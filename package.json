@@ -1,0 +1,32 @@
+{
+  "name": "progprob",
+  "version": "1.0.0-alpha.0",
+  "description": "Programming problems I seem to only face in interviews...",
+  "main": "index.js",
+  "scripts": {
+    "test": "node _jewel.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jameswomack/progprob.git"
+  },
+  "keywords": [
+    "programming",
+    "interview",
+    "fizzbuzz",
+    "bigo",
+    "faang"
+  ],
+  "author": "@james_womack",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jameswomack/progprob/issues"
+  },
+  "homepage": "https://github.com/jameswomack/progprob#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.30.0",
+    "eslint-plugin-import": "^2.23.4",
+    "yargs-parser": "^20.2.9"
+  }
+}
