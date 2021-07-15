@@ -27,31 +27,17 @@ function generateBoard(widthOfBoard = 6, heightOfBoard = 4, jewels = ['a','b','c
   const rows = {};
   
   while (jewelCounter < totalNumberOfJewels) {
-    let previousTwoInRow = [];
-    let previousTwoInColumn = [];
-
     let randomJewel = getRandomJewel();
 
     columns[columnIndex] = columns[columnIndex] || new Array();
-    rows[rowIndex] = rows[rowIndex] || new Array();
+    rows[rowIndex]       = rows[rowIndex]       || new Array();
 
-    columnIndex >= 2 && (previousTwoInRow    =       rows[rowIndex].slice(columnIndex-2, columnIndex));
-    rowIndex    >= 2 && (previousTwoInColumn = columns[columnIndex].slice(rowIndex-2,    rowIndex));
+    const previousTwoInRow    = columnIndex >= 2 ? rows[rowIndex].slice(columnIndex-2,    columnIndex) : [];
+    const previousTwoInColumn = rowIndex    >= 2 ? columns[columnIndex].slice(rowIndex-2, rowIndex)    : [];
 
-    let jewelToFilter = null;
-    if (previousTwoInRow.length && previousTwoInRow.filter(jewel => jewel === randomJewel).length === 2) 
-      jewelToFilter = randomJewel;
-
-    if (previousTwoInRow.length && previousTwoInRow[previousTwoInRow.length-1] === randomJewel && previousTwoInRow[0] === randomJewel)  
-      jewelToFilter = randomJewel;     
-    
-    if (previousTwoInColumn.length) { 
-      const filteredPrevious2InColumn = previousTwoInColumn.filter(jewel => jewel === randomJewel);
-      if (filteredPrevious2InColumn.length === 2)
-        jewelToFilter = randomJewel;
-    }    
-
-    jewelToFilter && (randomJewel = getRandomJewel(jewels.filter(j => j !== jewelToFilter)));
+    if ((previousTwoInRow.length && previousTwoInRow[previousTwoInRow.length-1] === randomJewel && previousTwoInRow[0] === randomJewel) ||
+      (previousTwoInColumn.length && previousTwoInColumn[previousTwoInColumn.length-1] === randomJewel && previousTwoInColumn[0] === randomJewel))  
+      randomJewel = getRandomJewel(jewels.filter(j => j !== randomJewel));
     
     columns[columnIndex].push(randomJewel);
     rows[rowIndex].push(randomJewel);
