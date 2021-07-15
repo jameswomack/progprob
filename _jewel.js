@@ -42,11 +42,8 @@ function generateBoard(widthOfBoard = 6, heightOfBoard = 4, jewels = ['a','b','c
     if (previousTwoInRow.length && previousTwoInRow.filter(jewel => jewel === randomJewel).length === 2) 
       jewelToFilter = randomJewel;
 
-    if (previousTwoInRow.length) { 
-      const filteredPrevious2InRow = previousTwoInRow.filter(jewel => jewel === randomJewel);
-      if (filteredPrevious2InRow.length === 2)
-        jewelToFilter = randomJewel;
-    } 
+    if (previousTwoInRow.length && previousTwoInRow[previousTwoInRow.length-1] === randomJewel && previousTwoInRow[0] === randomJewel)  
+      jewelToFilter = randomJewel;     
     
     if (previousTwoInColumn.length) { 
       const filteredPrevious2InColumn = previousTwoInColumn.filter(jewel => jewel === randomJewel);
